@@ -9,7 +9,6 @@ public class CarMove : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private CarCrash carCrash;
     [SerializeField] public float dir;
-    [SerializeField] public float nextDir;
     public float carSpeed;
 
     private void Start()

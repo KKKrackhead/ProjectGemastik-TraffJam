@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RetryLevel : MonoBehaviour
 {
+    [SerializeField] private int t;
+
     public void Retry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(t);
     }
 }
