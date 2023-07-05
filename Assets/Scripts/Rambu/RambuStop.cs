@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RambuStop : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D car)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (car.CompareTag("Car"))
+        if ((other.CompareTag("Car")))
         {
-            car.gameObject.GetComponent<CarMove>().Red(5);
+            if(this.CompareTag("RedLight")) other.gameObject.GetComponent<CarMove>().Red(3);
         }
     }
 }

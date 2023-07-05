@@ -14,12 +14,8 @@ public class RambuSlot : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             inPlace = true;
 
-
             eventData.pointerDrag.transform.localPosition = new Vector2(0, 0);
             eventData.pointerDrag.transform.SetParent(this.gameObject.transform, false);
-
-            
-            
         }
     }
 }

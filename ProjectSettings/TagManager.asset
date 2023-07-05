@@ -11,6 +11,11 @@ TagManager:
   - West
   - test
   - Objectives
+  - FullStop
+  - RedLight
+  - ObjCar
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

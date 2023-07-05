@@ -15,13 +15,14 @@ public class ObjectiveReached : MonoBehaviour
     {
         if (collision.CompareTag("Objectives"))
         {
-            StartCoroutine(Crashed());
+            StartCoroutine(LevelDone());
         }
     }
 
-    private IEnumerator Crashed()
+    private IEnumerator LevelDone()
     {
-        yield return new WaitForSecondsRealtime(1.25f);
+        GetComponent<CarCrash>().canDrive = false;
+        yield return new WaitForSecondsRealtime(1.5f);
         successUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
     }
 }

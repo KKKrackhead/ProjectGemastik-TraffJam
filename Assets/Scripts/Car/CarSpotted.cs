@@ -8,21 +8,24 @@ public class CarSpotted : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D otherCar)
     {
-        if (otherCar.CompareTag("Car"))
+        if (otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar"))
         {
-            if(otherCar.GetComponent<CarCrash>().canDrive == false)
+            if (otherCar.transform.parent.GetComponent<CarCrash>().canDrive == false)
             {
-                carMove.Red(.2f);
+                carMove.Red(.5f);
             }
-            else if (otherCar.GetComponent<CarCrash>().canDrive == true)
+            else if (otherCar.transform.parent.GetComponent<CarCrash>().canDrive == true)
             {
-                carMove.SlowDown(otherCar.GetComponent<CarMove>().carSpeed);
+                carMove.SlowDown(otherCar.transform.parent.GetComponent<CarMove>().carSpeed);
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D otherCar)
     {
-        carMove.SlowDown(otherCar.GetComponent<CarMove>().carSpeed);
+        if(otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar")){
+            Debug.Log("Spot 2");
+            carMove.SlowDown(otherCar.transform.parent.GetComponent<CarMove>().carSpeed);
+        }
     }
 }

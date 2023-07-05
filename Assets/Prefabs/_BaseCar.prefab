@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6900535571288374335}
+  - component: {fileID: 1456034981183770797}
   - component: {fileID: 6900535571288374334}
   - component: {fileID: 6900535571288374321}
   m_Layer: 0
@@ -17,9 +17,9 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6900535571288374335
-Transform:
+  m_IsActive: 1
+--- !u!224 &1456034981183770797
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -33,6 +33,11 @@ Transform:
   m_Father: {fileID: 6900535572261896663}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.05, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &6900535571288374334
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82,9 +87,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6900535571945282402}
   - component: {fileID: 6900535571945282405}
+  - component: {fileID: 4292030228238729386}
   m_Layer: 0
   m_Name: CarVisual
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,17 +151,43 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: bfcd4badb7eab3b4eae76f5cecbdf300, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &4292030228238729386
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900535571945282403}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02046305, y: -0.036725283}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6510178, y: 2.1930041}
+  m_EdgeRadius: 0
 --- !u!1 &6900535572261896660
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,11 +197,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6900535572261896663}
-  - component: {fileID: 6900535572261896746}
   - component: {fileID: 6900535572261896747}
   - component: {fileID: 6900535572261896744}
   - component: {fileID: 6900535572261896745}
   - component: {fileID: 6900535572261896662}
+  - component: {fileID: 18155053509911525}
   m_Layer: 0
   m_Name: _BaseCar
   m_TagString: Car
@@ -190,36 +222,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6900535571945282402}
-  - {fileID: 6900535571288374335}
+  - {fileID: 1456034981183770797}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.076}
---- !u!61 &6900535572261896746
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900535572261896660}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.010430694, y: -0.02081889}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7598343, y: 1.1370922}
-  m_EdgeRadius: 0
 --- !u!50 &6900535572261896747
 Rigidbody2D:
   serializedVersion: 4
@@ -257,7 +263,7 @@ MonoBehaviour:
   carVal: {fileID: 6900535572261896745}
   startButton: {fileID: 0}
   carCrash: {fileID: 0}
-  dir: 0
+  moveTarget: {fileID: 0}
   carSpeed: 0
 --- !u!114 &6900535572261896745
 MonoBehaviour:
@@ -289,3 +295,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDrive: 0
   crashUI: {fileID: 0}
+--- !u!114 &18155053509911525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900535572261896660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e0d2430e82ffb498d989c11aba26d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButton: {fileID: 0}
+  willStop: 0
+  stopping: 0
