@@ -84,7 +84,7 @@ public class CarMove : MonoBehaviour
     {
         carCrash.canDrive = false;
         carVal.speed = t;
-        yield return new WaitForSecondsRealtime(.2f);
+        yield return new WaitForSecondsRealtime(.1f);
         carCrash.canDrive = true;
     }
 }

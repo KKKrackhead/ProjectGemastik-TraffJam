@@ -8,7 +8,7 @@ public class RambuStop : MonoBehaviour
     {
         if ((other.CompareTag("Car")))
         {
-            if(this.CompareTag("RedLight")) other.gameObject.GetComponent<CarMove>().Red(3);
+            if(this.CompareTag("RedLight")) other.transform.parent.gameObject.GetComponent<CarMove>().Red(3);
         }
     }
 }

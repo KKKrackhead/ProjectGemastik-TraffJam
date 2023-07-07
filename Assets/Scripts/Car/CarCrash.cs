@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CarCrash : MonoBehaviour
 {
+    [SerializeField] private GameObject crashUI;
+    [SerializeField] private LevelEndHandler levelEndHandler;
+    [SerializeField] private GameObject explosion;
+
     public bool canDrive;
     private CarVal carVal;
     private Transform tr;
-    [SerializeField] private GameObject crashUI;
 
     private void Start()
     {
         crashUI = GameObject.Find("CrashUI");
+        levelEndHandler = GameObject.Find("LevelEndHandler").GetComponent<LevelEndHandler>();
 
         carVal = GetComponent<CarVal>();
         tr = GetComponent<Transform>();
@@ -34,13 +38,26 @@ public class CarCrash : MonoBehaviour
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(rand1, rand2), ForceMode2D.Force);
 
-            StartCoroutine(Crashed());
+            if(levelEndHandler.levelDone == false)
+            {
+                ContactPoint2D contact = other.contacts[0];
+                Vector2 pos = contact.point;
+                Quaternion rot = transform.rotation;
+
+                Instantiate(explosion, pos, rot);
+
+                StartCoroutine(Crashed());
+            }
+
+
+
         }
     }
 
     private IEnumerator Crashed()
     {
-        yield return new WaitForSecondsRealtime(1.25f);
+        levelEndHandler.levelDone = true;
+        yield return new WaitForSecondsRealtime(1.5f);
         crashUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
     }
 }

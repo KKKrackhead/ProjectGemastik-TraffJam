@@ -6,13 +6,13 @@ public class CarSpotted : MonoBehaviour
 {
     [SerializeField] private CarMove carMove;
 
-    private void OnTriggerEnter2D(Collider2D otherCar)
+    private void OnTriggerStay2D(Collider2D otherCar)
     {
         if (otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar"))
         {
             if (otherCar.transform.parent.GetComponent<CarCrash>().canDrive == false)
             {
-                carMove.Red(.5f);
+                carMove.Red(10f);
             }
             else if (otherCar.transform.parent.GetComponent<CarCrash>().canDrive == true)
             {
@@ -24,7 +24,6 @@ public class CarSpotted : MonoBehaviour
     private void OnTriggerExit2D(Collider2D otherCar)
     {
         if(otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar")){
-            Debug.Log("Spot 2");
             carMove.SlowDown(otherCar.transform.parent.GetComponent<CarMove>().carSpeed);
         }
     }

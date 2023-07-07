@@ -16,6 +16,8 @@ TagManager:
   - ObjCar
   - Left
   - Right
+  - TurnPoint
+  - TurnTurner
   layers:
   - Default
   - TransparentFX

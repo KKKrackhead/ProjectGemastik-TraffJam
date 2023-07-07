@@ -25,9 +25,9 @@ public class CarGoStop : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         stopping = true;
-        while (stopping && GetComponent<CarVal>().tempSpeed > 0)
+        if (willStop && stopping && GetComponent<CarVal>().tempSpeed > 0)
         {
-            GetComponent<CarVal>().tempSpeed -= Time.deltaTime;
+            GetComponent<CarVal>().tempSpeed -= Time.deltaTime*2;
         }
     }
 }
