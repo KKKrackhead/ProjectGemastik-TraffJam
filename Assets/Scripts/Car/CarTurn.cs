@@ -59,7 +59,6 @@ public class CarTurn : MonoBehaviour
 
     private void ResetSpeed()
     {
-        Debug.Log("reset haha");
         carVal.tempSpeed = temp; 
     }
 
@@ -68,6 +67,6 @@ public class CarTurn : MonoBehaviour
         turning = true;
         yield return new WaitForSecondsRealtime(1);
         turning = false;
-        Invoke(nameof(ResetSpeed), .3f);
+        ResetSpeed();
     }
 }

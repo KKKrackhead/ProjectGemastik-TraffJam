@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 public class InfoRambu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private GameObject infoUI;
+    [SerializeField] private AudioSource pop;
 
     private bool holding;
     private float downTime;
+
+    int temp;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,6 +24,7 @@ public class InfoRambu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         infoUI.GetComponent<RectTransform>().localPosition = new Vector2(1200, -1200);
         holding = false;
+        temp = 0;
         downTime = 0;
     }
 
@@ -33,7 +37,13 @@ public class InfoRambu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (downTime > 2)
             {
                 infoUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
+                temp++;
             }
+        }
+
+        if(temp == 1)
+        {
+            pop.Play();
         }
     }
 }

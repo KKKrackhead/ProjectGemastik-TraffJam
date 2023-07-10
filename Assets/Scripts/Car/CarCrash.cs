@@ -8,6 +8,8 @@ public class CarCrash : MonoBehaviour
     [SerializeField] private LevelEndHandler levelEndHandler;
     [SerializeField] private GameObject explosion;
 
+    [SerializeField] private AudioSource boom;
+
     public bool canDrive;
     private CarVal carVal;
     private Transform tr;
@@ -38,8 +40,8 @@ public class CarCrash : MonoBehaviour
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(rand1, rand2), ForceMode2D.Force);
 
-            if(levelEndHandler.levelDone == false)
-            {
+            //if(levelEndHandler.levelDone == false)
+            //{
                 ContactPoint2D contact = other.contacts[0];
                 Vector2 pos = contact.point;
                 Quaternion rot = transform.rotation;
@@ -47,15 +49,13 @@ public class CarCrash : MonoBehaviour
                 Instantiate(explosion, pos, rot);
 
                 StartCoroutine(Crashed());
-            }
-
-
-
+            //}
         }
     }
 
     private IEnumerator Crashed()
     {
+        boom.Play();
         levelEndHandler.levelDone = true;
         yield return new WaitForSecondsRealtime(1.5f);
         crashUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);

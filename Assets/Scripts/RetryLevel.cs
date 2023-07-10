@@ -9,6 +9,12 @@ public class RetryLevel : MonoBehaviour
 
     public void Retry()
     {
+        StartCoroutine(Huh());
+    }
+
+    private IEnumerator Huh()
+    {
+        yield return new WaitForSecondsRealtime(.1f);
         SceneManager.LoadScene(t);
     }
 }

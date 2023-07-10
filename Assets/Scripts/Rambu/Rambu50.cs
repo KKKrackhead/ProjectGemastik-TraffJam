@@ -7,10 +7,9 @@ public class Rambu50 : MonoBehaviour
     //[SerializeField] private GameObject test;
 
     private void OnTriggerEnter2D (Collider2D other){
-        if(other.CompareTag("Car") || other.CompareTag("ObjCar")){
-            //test = other.transform.GetChild(1).gameObject; 
-            other.transform.GetChild(1).gameObject.SetActive(false);
-            other.gameObject.GetComponent<CarVal>().tempSpeed = 15;       
+        if(other.transform.parent.CompareTag("Car") || other.transform.parent.CompareTag("ObjCar")){
+            other.transform.parent.transform.GetChild(1).gameObject.SetActive(false);
+            other.transform.parent.gameObject.GetComponent<CarVal>().tempSpeed = 15;       
         }
     }
 }

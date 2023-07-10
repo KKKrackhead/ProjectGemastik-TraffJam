@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarMove : MonoBehaviour
@@ -8,7 +9,6 @@ public class CarMove : MonoBehaviour
     [SerializeField] private CarVal carVal;
     [SerializeField] private GameObject startButton;
     [SerializeField] private CarCrash carCrash;
-    //[SerializeField] public float dir;
     [SerializeField] private Transform moveTarget;
 
     public float carSpeed;
@@ -32,28 +32,6 @@ public class CarMove : MonoBehaviour
         if(carCrash.canDrive == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, carSpeed * Time.deltaTime);
-
-            /*switch (dir)
-            {
-                case 0: //east
-                    rb.velocity = new Vector2(carSpeed, 0);
-                    break;
-
-                case 1: //west
-                    rb.velocity = new Vector2(-carSpeed, 0);
-                    break;
-
-                case 2: //north
-                    rb.velocity = new Vector2(0, carSpeed);
-                    break;
-
-                case 3: //south
-                    rb.velocity = new Vector2(0, -carSpeed);
-                    break;
-
-                default:
-                    break;
-            }*/
         }
     }
 
