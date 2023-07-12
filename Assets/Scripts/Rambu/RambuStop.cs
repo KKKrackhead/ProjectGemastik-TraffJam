@@ -9,6 +9,13 @@ public class RambuStop : MonoBehaviour
         if ((other.CompareTag("Car")))
         {
             if(this.CompareTag("RedLight")) other.transform.parent.gameObject.GetComponent<CarMove>().Red(3);
+            StartCoroutine(LightBeGone());
         }
+    }
+
+    private IEnumerator LightBeGone()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        Destroy(this);
     }
 }

@@ -15,6 +15,8 @@ public class CarTurn : MonoBehaviour
     [SerializeField] private float temp;
     [SerializeField] private float turnSpeed;
 
+    [SerializeField] private float Angle; //90 belok, 180 U-Turn
+
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class CarTurn : MonoBehaviour
             if (collision.transform.parent.CompareTag("Left") || collision.transform.parent.CompareTag("Right"))
             {
                 turn = collision.transform.parent.GetComponent<RambuBelok>().turn;
+                Angle = collision.transform.parent.GetComponent<RambuBelok>().forcedAngle;
                 turnSolo = turn;
                 StartCoroutine(GoTurn());
             }
@@ -53,7 +56,7 @@ public class CarTurn : MonoBehaviour
         if (turning && turnSolo != 0)
         {
             carVal.tempSpeed = turnSpeed;
-            transform.Rotate(0, 0, 90 * Time.deltaTime * turn, Space.Self);
+            transform.Rotate(0, 0, Angle * Time.deltaTime * turn, Space.Self);
         }
     }
 

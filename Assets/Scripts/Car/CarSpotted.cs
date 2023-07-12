@@ -8,7 +8,7 @@ public class CarSpotted : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D otherCar)
     {
-        if (otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar"))
+        if (otherCar.CompareTag("Car") || otherCar.transform.parent.CompareTag("Car") || otherCar.transform.parent.CompareTag("ObjCar"))
         {
             if (otherCar.transform.parent.GetComponent<CarCrash>().canDrive == false)
             {
@@ -23,7 +23,8 @@ public class CarSpotted : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D otherCar)
     {
-        if(otherCar.CompareTag("Car") || otherCar.CompareTag("ObjCar")){
+        if(otherCar.CompareTag("Car") || otherCar.transform.parent.CompareTag("Car") || otherCar.transform.parent.CompareTag("ObjCar"))
+        {
             carMove.SlowDown(otherCar.transform.parent.GetComponent<CarMove>().carSpeed);
         }
     }

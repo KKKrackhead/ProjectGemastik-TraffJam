@@ -27,7 +27,7 @@ public class CarGoStop : MonoBehaviour
         stopping = true;
         if (willStop && stopping && GetComponent<CarVal>().tempSpeed > 0)
         {
-            GetComponent<CarVal>().tempSpeed -= Time.deltaTime*2;
+            GetComponent<CarVal>().tempSpeed -= Time.deltaTime * 4;
         }
     }
 }

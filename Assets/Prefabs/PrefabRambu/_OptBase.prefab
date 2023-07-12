@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   moving: 0
+  startButton: {fileID: 0}
   parentObject: {fileID: 0}
 --- !u!114 &2342982388427770765
 MonoBehaviour:
@@ -113,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90bd5969832602945b7a7d7d3a427681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  east: {fileID: 2342982388630900049}
-  west: {fileID: 2342982388936739159}
+  east: {fileID: 2342982388936739159}
+  west: {fileID: 2342982388630900049}
   north: {fileID: 2342982389400708176}
   south: {fileID: 2342982388770019804}
   parentObj: {fileID: 0}
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoUI: {fileID: 0}
   pop: {fileID: -8409089627044664755}
+  startButton: {fileID: 0}
 --- !u!114 &3673005478655885286
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class CarsGoHome : MonoBehaviour
     [SerializeField] private GameObject successUI;
     [SerializeField] private LevelEndHandler levelEndHandler;
     [SerializeField] private StartButton startButton;
+    [SerializeField] private AudioSource yay;
 
     [SerializeField] private int carsNeeded;
     [SerializeField] private int carsEntered;
@@ -26,6 +27,7 @@ public class CarsGoHome : MonoBehaviour
             {
                 //level done
                 StartCoroutine(Finito());
+
             }
         }
     }
@@ -40,8 +42,9 @@ public class CarsGoHome : MonoBehaviour
 
     private IEnumerator Finito()
     {
+        yay.Play();
         levelEndHandler.levelDone = true;
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(1f);
         successUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
     }
 }

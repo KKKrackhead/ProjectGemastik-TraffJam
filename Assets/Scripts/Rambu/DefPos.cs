@@ -8,9 +8,8 @@ public class DefPos : MonoBehaviour, IPointerUpHandler
     [SerializeField] private GameObject parentObject;
     private ItemDrag itemDrag;
 
-    private Vector2 defPosition;
-
-
+    private Vector3 defPosition;
+    private Vector3 newReturnPos;
 
     private void Start()
     {
@@ -21,6 +20,12 @@ public class DefPos : MonoBehaviour, IPointerUpHandler
     private void Update()
     {
         parentObject = this.transform.parent.gameObject;
+
+        newReturnPos = transform.localPosition;
+        if (parentObject.CompareTag("Untagged") && newReturnPos.y != 0 && itemDrag.moving == false)
+        {
+            transform.localPosition = defPosition;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)

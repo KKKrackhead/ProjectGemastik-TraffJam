@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class StartButton : MonoBehaviour
 {
     public bool start;
-    [SerializeField] private AudioSource rev;
 
     void Start()
     {

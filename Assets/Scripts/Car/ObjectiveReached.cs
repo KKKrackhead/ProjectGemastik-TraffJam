@@ -6,6 +6,7 @@ public class ObjectiveReached : MonoBehaviour
 {
     [SerializeField] private GameObject successUI;
     [SerializeField] private LevelEndHandler levelEndHandler;
+    [SerializeField] private AudioSource clap;
 
     private void Start()
     {
@@ -27,5 +28,6 @@ public class ObjectiveReached : MonoBehaviour
         GetComponent<CarCrash>().canDrive = false;
         yield return new WaitForSecondsRealtime(1.5f);
         successUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
+        clap.Play();
     }
 }

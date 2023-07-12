@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class RambuBelok : MonoBehaviour
 {
     public float turn;
+    public float forcedAngle = 90;
 
     private void Awake()
     {

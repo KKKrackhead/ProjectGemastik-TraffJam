@@ -78,6 +78,9 @@
     <Compile Include="Assets\Scripts\Rambu\RambuCantTurn.cs" />
     <Compile Include="Assets\Scripts\Rambu\CheckActivator.cs" />
     <Compile Include="Assets\Scripts\Car\CarInfo.cs" />
+    <Compile Include="Assets\Scripts\Rambu\RambuUTurn.cs" />
+    <Compile Include="Assets\Scripts\CameraPan.cs" />
+    <Compile Include="Assets\Scripts\CheckStart.cs" />
     <Compile Include="Assets\Scripts\LevelTooLong.cs" />
     <Compile Include="Assets\Scripts\Car\CarGoStop.cs" />
     <Compile Include="Assets\Scripts\Rambu\Rambu50.cs" />

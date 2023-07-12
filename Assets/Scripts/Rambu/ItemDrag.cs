@@ -13,6 +13,7 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public bool moving = false;
     private Image image;
 
+    [SerializeField] private StartButton startButton;
     [SerializeField] private GameObject parentObject;
 
     private void Awake()
@@ -20,6 +21,7 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
 
+        startButton = GameObject.Find("PlayButton").GetComponent<StartButton>();
         canvas = GameObject.Find("CanvasGame").GetComponent<Canvas>();
     }
 
@@ -30,10 +32,13 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
-        image.raycastTarget = false;
-        image.color = new Color(1, 1, 1, .6f);
-        moving = true;
+        if (startButton.start == false)
+        {
+            image.raycastTarget = false;
+            image.color = new Color(1, 1, 1, .6f);
+            moving = true;
+        }
+        else if (startButton.start == true) return;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -43,8 +48,13 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             return;
         }
 
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        moving = true;
+        if (startButton.start == false)
+        {
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            moving = true;
+        }
+        else return;
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -56,5 +66,6 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (startButton.start == true) return;
     }
 }

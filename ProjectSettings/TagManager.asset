@@ -18,6 +18,8 @@ TagManager:
   - Right
   - TurnPoint
   - TurnTurner
+  - Header
+  - Footer
   layers:
   - Default
   - TransparentFX
