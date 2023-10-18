@@ -20,6 +20,15 @@ TagManager:
   - TurnTurner
   - Header
   - Footer
+  - SpecialLeft
+  - KelokLeft
+  - KelokRight
+  - Kelok
+  - DumbassBox
+  - Halte
+  - Hospital
+  - Bus
+  - Ambulans
   layers:
   - Default
   - TransparentFX

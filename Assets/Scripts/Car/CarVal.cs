@@ -24,8 +24,11 @@ public class CarVal : MonoBehaviour
         {
             speed = tempSpeed;
 
-            if (carCrash.canDrive == false) speed = 0;
+            if (carCrash.canDrive == false)
+            {
+                speed = 0;
+                tempSpeed = 0;
+            }
         }
     }
-
 }

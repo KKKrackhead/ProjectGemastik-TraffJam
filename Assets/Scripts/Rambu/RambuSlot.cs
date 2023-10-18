@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class RambuSlot : MonoBehaviour, IDropHandler
 {
+    public event EventHandler OnTutorialPhase;
+
     [SerializeField] public bool inPlace;
     private StartButton startButton;
     [SerializeField] private GameObject childRambu;
     [SerializeField] private GameObject items;
-    
+    public int tempPhase;
 
     private void Start()
     {
@@ -36,6 +39,12 @@ public class RambuSlot : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.transform.SetParent(this.gameObject.transform, false);
 
                 inPlace = true;
+
+                if (tempPhase < 2)
+                {
+                    OnTutorialPhase?.Invoke(this, EventArgs.Empty);
+                    tempPhase = 2;
+                }
             }
         }
         else if (startButton.start) return;
@@ -43,7 +52,18 @@ public class RambuSlot : MonoBehaviour, IDropHandler
 
     private void OnMouseDown()
     {
-        childRambu.transform.SetParent(items.transform, false);
-        inPlace = false;
+        if (childRambu != null && inPlace)
+        {
+            childRambu.transform.SetParent(items.transform, false);
+            inPlace = false;
+        }
+        else return;
+        
+
+        if (tempPhase == 2)
+        {
+            OnTutorialPhase?.Invoke(this, EventArgs.Empty);
+            tempPhase = 3;
+        }
     }
 }

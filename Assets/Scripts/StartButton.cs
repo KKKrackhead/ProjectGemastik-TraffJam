@@ -12,6 +12,11 @@ public class StartButton : MonoBehaviour
         start = false;
     }
 
+    private void Update()
+    {
+        if (start == true) Wait();
+    }
+
     public void StartLevel()
     {
         start = true;

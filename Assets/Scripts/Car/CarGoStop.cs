@@ -23,11 +23,16 @@ public class CarGoStop : MonoBehaviour
 
     private IEnumerator Stops()
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(.6f);
         stopping = true;
         if (willStop && stopping && GetComponent<CarVal>().tempSpeed > 0)
         {
             GetComponent<CarVal>().tempSpeed -= Time.deltaTime * 4;
+            if(GetComponent<CarVal>().tempSpeed < 0 || GetComponent<CarVal>().speed < 0)
+            {
+                GetComponent<CarVal>().tempSpeed = 0;
+                GetComponent<CarVal>().speed = 0;
+            }
         }
     }
 }

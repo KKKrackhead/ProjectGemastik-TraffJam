@@ -20,7 +20,6 @@ public class CarInfo : MonoBehaviour
         if(startButton.start == false) {
             info.SetActive(true);
         }
-        
     }
 
     private void OnMouseExit()

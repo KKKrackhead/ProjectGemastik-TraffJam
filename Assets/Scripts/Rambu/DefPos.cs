@@ -22,7 +22,7 @@ public class DefPos : MonoBehaviour, IPointerUpHandler
         parentObject = this.transform.parent.gameObject;
 
         newReturnPos = transform.localPosition;
-        if (parentObject.CompareTag("Untagged") && newReturnPos.y != 0 && itemDrag.moving == false)
+        if (parentObject.CompareTag("Untagged") && newReturnPos.y != -15 && itemDrag.moving == false)
         {
             transform.localPosition = defPosition;
         }

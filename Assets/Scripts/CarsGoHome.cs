@@ -7,10 +7,11 @@ public class CarsGoHome : MonoBehaviour
     [SerializeField] private GameObject successUI;
     [SerializeField] private LevelEndHandler levelEndHandler;
     [SerializeField] private StartButton startButton;
-    [SerializeField] private AudioSource yay;
 
     [SerializeField] private int carsNeeded;
     [SerializeField] private int carsEntered;
+    public bool shit;
+    [SerializeField] private bool isWaitingForDumbass;
 
     private void Start()
     {
@@ -23,11 +24,15 @@ public class CarsGoHome : MonoBehaviour
     {
         if (startButton.start == true)
         {
-            if(carsEntered == carsNeeded)
+            if (carsEntered == carsNeeded)
             {
-                //level done
                 StartCoroutine(Finito());
+            }
 
+            if (carsNeeded - carsEntered == 1 && isWaitingForDumbass == false) shit = true;
+            else if (carsNeeded - carsEntered == 1 && isWaitingForDumbass == true)
+            {
+                StartCoroutine(HahaNo());
             }
         }
     }
@@ -42,9 +47,15 @@ public class CarsGoHome : MonoBehaviour
 
     private IEnumerator Finito()
     {
-        yay.Play();
         levelEndHandler.levelDone = true;
+ 
         yield return new WaitForSecondsRealtime(1f);
         successUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
+    }
+
+    private IEnumerator HahaNo()
+    {
+        yield return new WaitForSecondsRealtime(1.6f);
+        shit = true;
     }
 }

@@ -10,6 +10,9 @@ public class CarMove : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private CarCrash carCrash;
     [SerializeField] private Transform moveTarget;
+    [SerializeField] LevelEndHandler levelEndHandler;
+
+    public bool test;
 
     public float carSpeed;
 
@@ -17,21 +20,25 @@ public class CarMove : MonoBehaviour
     {
         startButton = GameObject.Find("PlayButton");
         carCrash = GetComponent<CarCrash>();
+        levelEndHandler = GameObject.Find("LevelEndHandler").GetComponent<LevelEndHandler>();
 
         moveTarget = this.transform.GetChild(1).transform;
     }
 
     private void Update()
     {
-        
         if(startButton.GetComponent<StartButton>().start == true)
         {
             carSpeed = carVal.speed;
-        }
 
-        if(carCrash.canDrive == true)
+            if (carCrash.canDrive == true)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, carSpeed * Time.deltaTime);
+            }
+        }        
+        if(levelEndHandler.levelDone == true || levelEndHandler.needed == levelEndHandler.arrived)
         {
-            transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, carSpeed * Time.deltaTime);
+            Red(1000);  
         }
     }
 

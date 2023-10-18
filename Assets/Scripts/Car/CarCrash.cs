@@ -5,10 +5,14 @@ using UnityEngine;
 public class CarCrash : MonoBehaviour
 {
     [SerializeField] private GameObject crashUI;
+    [SerializeField] private GameObject successUI;
     [SerializeField] private LevelEndHandler levelEndHandler;
     [SerializeField] private GameObject explosion;
 
+    [SerializeField] private CrossingBox crossingBox;
+
     [SerializeField] private AudioSource boom;
+
 
     public bool canDrive;
     private CarVal carVal;
@@ -17,7 +21,10 @@ public class CarCrash : MonoBehaviour
     private void Start()
     {
         crashUI = GameObject.Find("CrashUI");
+        successUI = GameObject.Find("SuccessUI");
         levelEndHandler = GameObject.Find("LevelEndHandler").GetComponent<LevelEndHandler>();
+
+        if (levelEndHandler.adaCrossing) crossingBox = GameObject.Find("Dumbass Box").GetComponent<CrossingBox>();
 
         carVal = GetComponent<CarVal>();
         tr = GetComponent<Transform>();
@@ -25,39 +32,61 @@ public class CarCrash : MonoBehaviour
         canDrive = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("ObjCar"))
+        if(levelEndHandler.levelDone == true)
         {
             canDrive = false;
-            float rand1 = Random.Range(-carVal.speed, carVal.speed * 2);
-            float rand2 = Random.Range(-carVal.speed, carVal.speed * 2);
+        }
 
-            float rand3 = Random.Range(rand1, rand2);
-            for (float i = -carVal.speed; i <= rand3; rand3 -= 1.5f) {
-                transform.Rotate(tr.rotation.x, tr.rotation.y, rand3 * 2 * (2 * Time.deltaTime), Space.Self);
+        if(levelEndHandler.arrived == levelEndHandler.needed)
+        {
+            canDrive = false;
+        }
+
+        if (levelEndHandler.adaCrossing)
+        {
+            if(crossingBox.allSafe == true)
+            {
+                canDrive = true;
             }
+        }
 
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(rand1, rand2), ForceMode2D.Force);
+        
+    }
 
-            //if(levelEndHandler.levelDone == false)
-            //{
-                ContactPoint2D contact = other.contacts[0];
-                Vector2 pos = contact.point;
-                Quaternion rot = transform.rotation;
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        canDrive = false;
 
-                Instantiate(explosion, pos, rot);
+        GetComponent<CarTurn>().turning = false;
 
-                StartCoroutine(Crashed());
-            //}
+        float rand1 = Random.Range(-carVal.speed, carVal.speed * 2);
+        float rand2 = Random.Range(-carVal.speed, carVal.speed * 2);
+
+        float rand3 = Random.Range(rand1, rand2);
+        for (float i = -carVal.speed; i <= rand3; rand3 -= 2) {
+            transform.Rotate(tr.rotation.x, tr.rotation.y, rand3 * 2 * (2 * Time.deltaTime), Space.Self);
+        }
+
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(rand1, rand2), ForceMode2D.Force);
+
+        ContactPoint2D contact = other.contacts[0];
+        Vector2 pos = contact.point;
+        Quaternion rot = transform.rotation;
+
+        if(successUI.transform.position != Vector3.zero)
+        {
+            Instantiate(explosion, pos, rot);
+            boom.Play();
+            StartCoroutine(Crashed());
         }
     }
 
     private IEnumerator Crashed()
     {
-        boom.Play();
         levelEndHandler.levelDone = true;
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(1f);
         crashUI.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
     }
 }

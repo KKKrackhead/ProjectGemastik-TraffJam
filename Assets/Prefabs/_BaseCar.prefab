@@ -438,6 +438,7 @@ MonoBehaviour:
   startButton: {fileID: 0}
   carCrash: {fileID: 0}
   moveTarget: {fileID: 0}
+  test: 0
   carSpeed: 0
 --- !u!114 &6900535572261896745
 MonoBehaviour:
@@ -468,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crashUI: {fileID: 0}
+  successUI: {fileID: 0}
   levelEndHandler: {fileID: 0}
   explosion: {fileID: 1369296071245738115, guid: 4130f08606105714582350e1975d2a5d, type: 3}
   boom: {fileID: 5874955791615651698}
@@ -499,9 +501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0f06c4b5a478d4eb98dbba483d6fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turning: 0
+  grooving: 0
+  endHandler: {fileID: 0}
   turnSolo: 0
+  groove: 0
   carVal: {fileID: 0}
-  temp: 0
+  tempWhileTurning: 0
   turnSpeed: 3
 --- !u!114 &4313570672137088688
 MonoBehaviour:
@@ -529,7 +535,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2bb7662b8676bbc41acd21e5c724ca07, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
